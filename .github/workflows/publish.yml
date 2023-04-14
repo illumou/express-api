@@ -10,19 +10,9 @@ env:
 
 
 jobs:
-  ESLint:
-    name: Refactor Code
-    needs: []
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - run: npm run lint:fix
-        name: Refactoring Code
-
   Check:
     name: Check NodeJS versions
     runs-on: ubuntu-latest
-    needs: [ ESLint ]
     strategy:
       matrix:
         node-version: [16.x, 17.x, 18.x, 19.x]
@@ -35,6 +25,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
         name: Install dependencies
+      - run: npm run lint:fix
+        name: Refactoring Code
       - run: npm run build
         name: Building API
 
