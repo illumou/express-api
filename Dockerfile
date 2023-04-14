@@ -1,9 +1,9 @@
 FROM node:latest
 
-RUN mkdir -p /usr/app
-WORKDIR /usr/app
+RUN mkdir -p /app
+WORKDIR /app
 
-COPY . /usr/app
+COPY . /app
 
 RUN npm install
 RUN npm run build
